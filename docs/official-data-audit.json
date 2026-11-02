@@ -1,0 +1,319 @@
+{
+  "sources": {
+    "2024": {
+      "archive_member": "T_T100_SEGMENT_ALL_CARRIER.csv",
+      "csv_sha256": "c430bcfae3ade4ba455942ec25f5c1bad9b3e964d7b8d5f20a8a888430085b60",
+      "freight_unit": "pounds (BTS FREIGHT convention; no unit metadata in CSV)",
+      "filename": "T_T100_SEGMENT_ALL_CARRIER_20261101_024444.zip",
+      "year": 2024,
+      "sha256": "fb6d4ac947bd3a3f6612f6ab0c0a55b3c04a98daefe6b481d5c8a184c3c80904",
+      "rows": 549799,
+      "columns": [
+        "DEPARTURES_SCHEDULED",
+        "DEPARTURES_PERFORMED",
+        "PAYLOAD",
+        "SEATS",
+        "PASSENGERS",
+        "FREIGHT",
+        "MAIL",
+        "DISTANCE",
+        "RAMP_TO_RAMP",
+        "AIR_TIME",
+        "UNIQUE_CARRIER",
+        "AIRLINE_ID",
+        "UNIQUE_CARRIER_NAME",
+        "UNIQUE_CARRIER_ENTITY",
+        "REGION",
+        "CARRIER",
+        "CARRIER_NAME",
+        "CARRIER_GROUP",
+        "CARRIER_GROUP_NEW",
+        "ORIGIN_AIRPORT_ID",
+        "ORIGIN_AIRPORT_SEQ_ID",
+        "ORIGIN_CITY_MARKET_ID",
+        "ORIGIN",
+        "ORIGIN_CITY_NAME",
+        "ORIGIN_STATE_ABR",
+        "ORIGIN_STATE_FIPS",
+        "ORIGIN_STATE_NM",
+        "ORIGIN_COUNTRY",
+        "ORIGIN_COUNTRY_NAME",
+        "ORIGIN_WAC",
+        "DEST_AIRPORT_ID",
+        "DEST_AIRPORT_SEQ_ID",
+        "DEST_CITY_MARKET_ID",
+        "DEST",
+        "DEST_CITY_NAME",
+        "DEST_STATE_ABR",
+        "DEST_STATE_FIPS",
+        "DEST_STATE_NM",
+        "DEST_COUNTRY",
+        "DEST_COUNTRY_NAME",
+        "DEST_WAC",
+        "AIRCRAFT_GROUP",
+        "AIRCRAFT_TYPE",
+        "AIRCRAFT_CONFIG",
+        "YEAR",
+        "QUARTER",
+        "MONTH",
+        "DISTANCE_GROUP",
+        "CLASS",
+        "DATA_SOURCE"
+      ],
+      "freight_lb": 53150672359,
+      "departures": 10682376,
+      "carriers": 306,
+      "pairs": 40740,
+      "months": {
+        "1": 45204,
+        "2": 42339,
+        "3": 45200,
+        "4": 43629,
+        "5": 47193,
+        "6": 47638,
+        "7": 47460,
+        "8": 47893,
+        "9": 44755,
+        "10": 44949,
+        "11": 45727,
+        "12": 47812
+      },
+      "service_classes": {
+        "F": 421870,
+        "L": 67860,
+        "G": 43012,
+        "P": 17057
+      },
+      "data_sources": {
+        "DU": 437871,
+        "IU": 58869,
+        "IF": 49991,
+        "DF": 3068
+      },
+      "missing": {
+        "ORIGIN_STATE_ABR": 44345,
+        "ORIGIN_STATE_FIPS": 54088,
+        "ORIGIN_STATE_NM": 44345,
+        "DEST_STATE_ABR": 45127,
+        "DEST_STATE_FIPS": 54772,
+        "DEST_STATE_NM": 45127
+      },
+      "duplicates": 0
+    },
+    "2025": {
+      "archive_member": "T_T100_SEGMENT_ALL_CARRIER.csv",
+      "csv_sha256": "c56953d4028ccd47c33a5745f95b72a636b9ff7397237c2351e22d186d3d643f",
+      "freight_unit": "pounds (BTS FREIGHT convention; no unit metadata in CSV)",
+      "filename": "T_T100_SEGMENT_ALL_CARRIER_20261101_024054.zip",
+      "year": 2025,
+      "sha256": "b592928af283809a777e89f8b79c24c5b574ddd22ae5eb3b39f4029eaccde6b9",
+      "rows": 571205,
+      "columns": [
+        "DEPARTURES_SCHEDULED",
+        "DEPARTURES_PERFORMED",
+        "PAYLOAD",
+        "SEATS",
+        "PASSENGERS",
+        "FREIGHT",
+        "MAIL",
+        "DISTANCE",
+        "RAMP_TO_RAMP",
+        "AIR_TIME",
+        "UNIQUE_CARRIER",
+        "AIRLINE_ID",
+        "UNIQUE_CARRIER_NAME",
+        "UNIQUE_CARRIER_ENTITY",
+        "REGION",
+        "CARRIER",
+        "CARRIER_NAME",
+        "CARRIER_GROUP",
+        "CARRIER_GROUP_NEW",
+        "ORIGIN_AIRPORT_ID",
+        "ORIGIN_AIRPORT_SEQ_ID",
+        "ORIGIN_CITY_MARKET_ID",
+        "ORIGIN",
+        "ORIGIN_CITY_NAME",
+        "ORIGIN_STATE_ABR",
+        "ORIGIN_STATE_FIPS",
+        "ORIGIN_STATE_NM",
+        "ORIGIN_COUNTRY",
+        "ORIGIN_COUNTRY_NAME",
+        "ORIGIN_WAC",
+        "DEST_AIRPORT_ID",
+        "DEST_AIRPORT_SEQ_ID",
+        "DEST_CITY_MARKET_ID",
+        "DEST",
+        "DEST_CITY_NAME",
+        "DEST_STATE_ABR",
+        "DEST_STATE_FIPS",
+        "DEST_STATE_NM",
+        "DEST_COUNTRY",
+        "DEST_COUNTRY_NAME",
+        "DEST_WAC",
+        "AIRCRAFT_GROUP",
+        "AIRCRAFT_TYPE",
+        "AIRCRAFT_CONFIG",
+        "YEAR",
+        "QUARTER",
+        "MONTH",
+        "DISTANCE_GROUP",
+        "CLASS",
+        "DATA_SOURCE"
+      ],
+      "freight_lb": 50777350469,
+      "departures": 10863635,
+      "carriers": 298,
+      "pairs": 41489,
+      "months": {
+        "1": 45453,
+        "2": 43875,
+        "3": 48154,
+        "4": 45918,
+        "5": 47641,
+        "6": 50111,
+        "7": 49604,
+        "8": 49734,
+        "9": 45152,
+        "10": 47965,
+        "11": 48307,
+        "12": 49291
+      },
+      "service_classes": {
+        "F": 443545,
+        "L": 68790,
+        "G": 43249,
+        "P": 15621
+      },
+      "data_sources": {
+        "DU": 455857,
+        "IU": 61907,
+        "IF": 50505,
+        "DF": 2936
+      },
+      "missing": {
+        "ORIGIN_STATE_ABR": 46229,
+        "ORIGIN_STATE_FIPS": 55731,
+        "ORIGIN_STATE_NM": 46229,
+        "DEST_STATE_ABR": 47262,
+        "DEST_STATE_FIPS": 56681,
+        "DEST_STATE_NM": 47262
+      },
+      "duplicates": 0
+    }
+  },
+  "reconciliation": {
+    "2024": {
+      "mirror_rows": 549552,
+      "row_delta": 247,
+      "freight_lb_delta": 17008789,
+      "departures_delta": 10490,
+      "official_rows_different": 1471,
+      "mirror_rows_different": 1224,
+      "matched_changed_keys": 1206,
+      "official_only_keys": 265,
+      "mirror_only_keys": 18,
+      "changed_fields": {
+        "DEPARTURES_PERFORMED": 62,
+        "PAYLOAD": 74,
+        "SEATS": 74,
+        "PASSENGERS": 64,
+        "FREIGHT": 68,
+        "UNIQUE_CARRIER_NAME": 795,
+        "CARRIER_NAME": 795,
+        "AIRCRAFT_CONFIG": 330
+      },
+      "carrier_deltas": {
+        "BF": {
+          "FREIGHT": 823859.0,
+          "DEPARTURES_PERFORMED": -50.0
+        },
+        "HU": {
+          "FREIGHT": 17250726.0,
+          "DEPARTURES_PERFORMED": 533.0
+        },
+        "IB": {
+          "FREIGHT": -8287061.0,
+          "DEPARTURES_PERFORMED": -724.0
+        },
+        "LNY": {
+          "FREIGHT": 892359.0,
+          "DEPARTURES_PERFORMED": 10215.0
+        },
+        "OS": {
+          "FREIGHT": 6324551.0,
+          "DEPARTURES_PERFORMED": 334.0
+        },
+        "WRD": {
+          "FREIGHT": 4355.0,
+          "DEPARTURES_PERFORMED": 182.0
+        }
+      }
+    },
+    "2025": {
+      "mirror_rows": 571205,
+      "row_delta": 0,
+      "freight_lb_delta": 0,
+      "departures_delta": 0,
+      "official_rows_different": 0,
+      "mirror_rows_different": 0,
+      "matched_changed_keys": 0,
+      "official_only_keys": 0,
+      "mirror_only_keys": 0,
+      "changed_fields": {},
+      "carrier_deltas": {}
+    }
+  },
+  "eligible_pairs": 2892,
+  "rule_findings": 5645,
+  "szx_differences": {
+    "YEAR+MONTH": [],
+    "YEAR+UNIQUE_CARRIER": [],
+    "YEAR+AIRCRAFT_TYPE": [],
+    "YEAR+CLASS": [],
+    "YEAR+AIRCRAFT_CONFIG": [
+      {
+        "YEAR": 2024,
+        "AIRCRAFT_CONFIG": 1,
+        "FREIGHT": -5734148.0,
+        "DEPARTURES_PERFORMED": -21.0
+      },
+      {
+        "YEAR": 2024,
+        "AIRCRAFT_CONFIG": 2,
+        "FREIGHT": 5734148.0,
+        "DEPARTURES_PERFORMED": 21.0
+      }
+    ]
+  },
+  "airport_coverage": {
+    "reference_rows": 86329,
+    "regions": 3987,
+    "countries": 249,
+    "unique_bts_codes": 2340,
+    "endpoint_country_keys": 2340,
+    "match_status": {
+      "matched_iata_country": 2020,
+      "unmatched_iata": 287,
+      "country_conflict": 33
+    },
+    "coordinate_matches": 2020,
+    "ambiguous_iata_codes": 0,
+    "invalid_reference_coordinates": 0,
+    "missing_country_names": 0,
+    "inconsistent_regions": 0,
+    "origin_rows_with_coordinates": 1102640,
+    "dest_rows_with_coordinates": 1103365
+  },
+  "reference_sha256": {
+    "airports.csv": "1aab80ccfa203a0d02476c16ac282d9e787cf3d08700d7365c5c5502a0db8ba7",
+    "regions.csv": "9220d6582b804cfdec8432e5bb21456699c9df8969bf5d8886beb62ff0b1318b",
+    "countries.csv": "2a9dbee691125b0cdb8ceb5fe227c48c903f99c488963b8e53e2ab366521c639"
+  },
+  "network": {
+    "positive_freight_pairs_2024": 13582,
+    "positive_freight_pairs_2025": 13714,
+    "both": 10284,
+    "only_2024": 3298,
+    "only_2025": 3430
+  }
+}

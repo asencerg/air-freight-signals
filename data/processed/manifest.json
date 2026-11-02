@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "dataset_version": "bts-2024-2025-official-20261101-v1",
+  "publisher": "US DOT Bureau of Transportation Statistics",
+  "source_dataset": "T-100 Segment (All Carriers)",
+  "source_receipt_date": "2026-11-01",
+  "original_download_date": "Not independently recorded; export filenames contain 20261101.",
+  "reporting_years": [
+    2024,
+    2025
+  ],
+  "months_per_year": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "source_records": 1121004,
+  "sources": [
+    {
+      "filename": "T_T100_SEGMENT_ALL_CARRIER_20261101_024444.zip",
+      "year": 2024,
+      "rows": 549799,
+      "zip_sha256": "fb6d4ac947bd3a3f6612f6ab0c0a55b3c04a98daefe6b481d5c8a184c3c80904",
+      "csv_sha256": "c430bcfae3ade4ba455942ec25f5c1bad9b3e964d7b8d5f20a8a888430085b60"
+    },
+    {
+      "filename": "T_T100_SEGMENT_ALL_CARRIER_20261101_024054.zip",
+      "year": 2025,
+      "rows": 571205,
+      "zip_sha256": "b592928af283809a777e89f8b79c24c5b574ddd22ae5eb3b39f4029eaccde6b9",
+      "csv_sha256": "c56953d4028ccd47c33a5745f95b72a636b9ff7397237c2351e22d186d3d643f"
+    }
+  ],
+  "grain": [
+    "YEAR",
+    "MONTH",
+    "ORIGIN",
+    "DEST",
+    "ORIGIN_AIRPORT_ID",
+    "DEST_AIRPORT_ID",
+    "ORIGIN_COUNTRY",
+    "DEST_COUNTRY",
+    "UNIQUE_CARRIER",
+    "AIRLINE_ID",
+    "UNIQUE_CARRIER_ENTITY",
+    "UNIQUE_CARRIER_NAME",
+    "REGION",
+    "CLASS",
+    "AIRCRAFT_GROUP",
+    "AIRCRAFT_TYPE",
+    "AIRCRAFT_CONFIG",
+    "DATA_SOURCE",
+    "DISTANCE"
+  ],
+  "measures": [
+    "FREIGHT",
+    "DEPARTURES_PERFORMED",
+    "DEPARTURES_SCHEDULED",
+    "MAIL",
+    "PAYLOAD",
+    "SEATS",
+    "PASSENGERS"
+  ],
+  "freight_unit": "pounds",
+  "metric_tonnes_per_pound": 0.00045359237,
+  "aggregation": "Sum integer measures at declared grain; count every original row, including zero freight/departures. No scope exclusions. Aircraft type is a numeric BTS code: CSV padding such as 042 normalizes to 42; carrier/entity strings keep leading zeros.",
+  "not_retained": [
+    "AIR_TIME",
+    "CARRIER",
+    "CARRIER_GROUP",
+    "CARRIER_GROUP_NEW",
+    "CARRIER_NAME",
+    "DEST_AIRPORT_SEQ_ID",
+    "DEST_CITY_MARKET_ID",
+    "DEST_CITY_NAME",
+    "DEST_COUNTRY_NAME",
+    "DEST_STATE_ABR",
+    "DEST_STATE_FIPS",
+    "DEST_STATE_NM",
+    "DEST_WAC",
+    "DISTANCE_GROUP",
+    "ORIGIN_AIRPORT_SEQ_ID",
+    "ORIGIN_CITY_MARKET_ID",
+    "ORIGIN_CITY_NAME",
+    "ORIGIN_COUNTRY_NAME",
+    "ORIGIN_STATE_ABR",
+    "ORIGIN_STATE_FIPS",
+    "ORIGIN_STATE_NM",
+    "ORIGIN_WAC",
+    "QUARTER",
+    "RAMP_TO_RAMP"
+  ],
+  "not_retained_rationale": "Unused descriptive geography/version IDs and time fields are not needed for current freight, frequency, concentration, aircraft/class or coordinate analyses. Originals remain unchanged locally.",
+  "files": {
+    "segments-v1.parquet": {
+      "rows": 1121004,
+      "bytes": 18799202,
+      "sha256": "6e5114157edb6fa6b02d367272a60f48afbd8408962bbb9789445aa66e7c10aa",
+      "columns": {
+        "YEAR": "uint16",
+        "MONTH": "uint8",
+        "ORIGIN": "object",
+        "DEST": "object",
+        "ORIGIN_AIRPORT_ID": "uint32",
+        "DEST_AIRPORT_ID": "uint32",
+        "ORIGIN_COUNTRY": "object",
+        "DEST_COUNTRY": "object",
+        "UNIQUE_CARRIER": "object",
+        "AIRLINE_ID": "uint32",
+        "UNIQUE_CARRIER_ENTITY": "object",
+        "UNIQUE_CARRIER_NAME": "object",
+        "REGION": "object",
+        "CLASS": "object",
+        "AIRCRAFT_GROUP": "uint16",
+        "AIRCRAFT_TYPE": "uint16",
+        "AIRCRAFT_CONFIG": "uint16",
+        "DATA_SOURCE": "object",
+        "DISTANCE": "float64",
+        "FREIGHT": "int64",
+        "DEPARTURES_PERFORMED": "int64",
+        "DEPARTURES_SCHEDULED": "int64",
+        "MAIL": "int64",
+        "PAYLOAD": "int64",
+        "SEATS": "int64",
+        "PASSENGERS": "int64",
+        "SOURCE_RECORD_COUNT": "uint32"
+      }
+    },
+    "airports-v1.parquet": {
+      "rows": 2340,
+      "bytes": 107357,
+      "sha256": "26e18c362e886742c34b54c496345d9f308037f3debe85c64164e436cd545b45",
+      "columns": {
+        "bts_code": "object",
+        "bts_country": "object",
+        "ident": "object",
+        "iata_code": "object",
+        "name": "object",
+        "iso_country": "object",
+        "iso_region": "object",
+        "country_name": "object",
+        "region_name": "object",
+        "type": "object",
+        "latitude_deg": "float64",
+        "longitude_deg": "float64",
+        "match_status": "object",
+        "coordinate_match": "bool"
+      }
+    }
+  },
+  "annual_totals": [
+    {
+      "YEAR": 2024,
+      "FREIGHT": 53150672359,
+      "DEPARTURES_PERFORMED": 10682376,
+      "DEPARTURES_SCHEDULED": 9568326,
+      "MAIL": 1267780669,
+      "PAYLOAD": 449632638347,
+      "SEATS": 1376697187,
+      "PASSENGERS": 1118675433,
+      "SOURCE_RECORD_COUNT": 549799
+    },
+    {
+      "YEAR": 2025,
+      "FREIGHT": 50777350469,
+      "DEPARTURES_PERFORMED": 10863635,
+      "DEPARTURES_SCHEDULED": 9759891,
+      "MAIL": 2382772767,
+      "PAYLOAD": 448127818429,
+      "SEATS": 1395328780,
+      "PASSENGERS": 1108472293,
+      "SOURCE_RECORD_COUNT": 571205
+    }
+  ],
+  "validation": {
+    "YEAR": {
+      "groups": 2,
+      "all_measures_exact": true
+    },
+    "YEAR+MONTH": {
+      "groups": 24,
+      "all_measures_exact": true
+    },
+    "YEAR+ORIGIN+DEST": {
+      "groups": 82229,
+      "all_measures_exact": true
+    },
+    "YEAR+MONTH+ORIGIN+DEST": {
+      "groups": 393908,
+      "all_measures_exact": true
+    },
+    "YEAR+MONTH+ORIGIN+DEST+UNIQUE_CARRIER": {
+      "groups": 650319,
+      "all_measures_exact": true
+    },
+    "YEAR+CLASS": {
+      "groups": 8,
+      "all_measures_exact": true
+    },
+    "YEAR+MONTH+ORIGIN+DEST+UNIQUE_CARRIER+CLASS+AIRCRAFT_TYPE+AIRCRAFT_CONFIG": {
+      "groups": 1119898,
+      "all_measures_exact": true
+    },
+    "independent_raw_csv_group_difference_count": 0,
+    "eligible_pairs": 2892,
+    "all_application_evidence_reconciled": true,
+    "all_carrier_shares_reproduced_by_exact_carrier_freight_groups": true
+  },
+  "reference_sources": {
+    "airports.csv": "1aab80ccfa203a0d02476c16ac282d9e787cf3d08700d7365c5c5502a0db8ba7",
+    "regions.csv": "9220d6582b804cfdec8432e5bb21456699c9df8969bf5d8886beb62ff0b1318b",
+    "countries.csv": "2a9dbee691125b0cdb8ceb5fe227c48c903f99c488963b8e53e2ab366521c639"
+  },
+  "coordinate_coverage": {
+    "matched": 2020,
+    "total": 2340,
+    "statuses": {
+      "matched_iata_country": 2020,
+      "unmatched_iata": 287,
+      "country_conflict": 33
+    }
+  },
+  "redistribution": {
+    "status": "unresolved",
+    "hold": true,
+    "reason": "Public redistribution requires confirmation of exact T-100 export release status and applicable downstream terms. Elapsed embargo periods alone do not establish redistribution rights. See docs/data-provenance.md.",
+    "assessment": "docs/data-provenance.md",
+    "ourairports_notice": "docs/licenses/OurAirports-Unlicense.txt"
+  }
+}

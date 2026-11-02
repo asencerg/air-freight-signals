@@ -1,0 +1,310 @@
+{
+  "scope": "Full-year eligible directional corridors: every month, >=100 tonnes and >=30 departures in each year; both safe endpoints needed for mapping. Top-N not applied.",
+  "airport_codes": 2340,
+  "matched_codes": 2020,
+  "statuses": {
+    "matched_iata_country": 2020,
+    "unmatched_iata": 287,
+    "country_conflict": 33
+  },
+  "eligible": {
+    "2024": {
+      "corridors": 2892,
+      "mapped_corridors": 2800,
+      "corridor_pct": 96.81881051175657,
+      "tonnes": 21788361.617517196,
+      "departures": 4277118.0,
+      "freight_pct": 98.52196998538192,
+      "departures_pct": 97.58868004109308,
+      "unmapped_tonnes": 322038.52440043585,
+      "unmapped_departures": 103135.0,
+      "impacts": [
+        {
+          "map_status": "Country conflict",
+          "tonnes": 293850.36494669394,
+          "departures": 92423.0
+        },
+        {
+          "map_status": "Mapped",
+          "tonnes": 21466323.09311676,
+          "departures": 4173983.0
+        },
+        {
+          "map_status": "Missing/ambiguous coordinates",
+          "tonnes": 28188.15945374198,
+          "departures": 10712.0
+        }
+      ],
+      "highest_unmapped": [
+        {
+          "market": "MIA \u2192 SJU",
+          "tonnes_2024": 50822.89453513811,
+          "departures_2024": 4399.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "MEM \u2192 SJU",
+          "tonnes_2024": 30658.91519489106,
+          "departures_2024": 739.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "CVG \u2192 SJU",
+          "tonnes_2024": 29125.96349308646,
+          "departures_2024": 728.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SDF \u2192 SJU",
+          "tonnes_2024": 23085.581856780518,
+          "departures_2024": 823.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "MEM \u2192 BQN",
+          "tonnes_2024": 19255.42792643624,
+          "departures_2024": 516.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 MEM",
+          "tonnes_2024": 18206.82669324134,
+          "departures_2024": 678.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 SDF",
+          "tonnes_2024": 13681.15055206438,
+          "departures_2024": 699.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 MIA",
+          "tonnes_2024": 13482.61181093827,
+          "departures_2024": 3913.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SDF \u2192 PBI",
+          "tonnes_2024": 9707.91771248915,
+          "departures_2024": 323.0,
+          "map_status": "Missing/ambiguous coordinates"
+        },
+        {
+          "market": "MCO \u2192 SJU",
+          "tonnes_2024": 8026.679861046,
+          "departures_2024": 6497.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 CVG",
+          "tonnes_2024": 7820.928094052149,
+          "departures_2024": 773.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "BQN \u2192 MEM",
+          "tonnes_2024": 7602.80595594366,
+          "departures_2024": 274.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "MEM \u2192 PBI",
+          "tonnes_2024": 6910.67570885384,
+          "departures_2024": 252.0,
+          "map_status": "Missing/ambiguous coordinates"
+        },
+        {
+          "market": "JAX \u2192 SJU",
+          "tonnes_2024": 6635.5165981797,
+          "departures_2024": 501.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 EWR",
+          "tonnes_2024": 6206.27397378604,
+          "departures_2024": 2465.0,
+          "map_status": "Country conflict"
+        }
+      ]
+    },
+    "2025": {
+      "corridors": 2892,
+      "mapped_corridors": 2800,
+      "corridor_pct": 96.81881051175657,
+      "tonnes": 20923626.285897814,
+      "departures": 4226833.0,
+      "freight_pct": 98.6178039849428,
+      "departures_pct": 97.58802867300412,
+      "unmapped_tonnes": 289205.5287291409,
+      "unmapped_departures": 101950.0,
+      "impacts": [
+        {
+          "map_status": "Country conflict",
+          "tonnes": 258426.03643530983,
+          "departures": 91205.0
+        },
+        {
+          "map_status": "Mapped",
+          "tonnes": 20634420.757168673,
+          "departures": 4124883.0
+        },
+        {
+          "map_status": "Missing/ambiguous coordinates",
+          "tonnes": 30779.49229383105,
+          "departures": 10745.0
+        }
+      ],
+      "highest_unmapped": [
+        {
+          "market": "MIA \u2192 SJU",
+          "tonnes_2025": 40791.72558094557,
+          "departures_2025": 3701.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SDF \u2192 SJU",
+          "tonnes_2025": 26095.41307879506,
+          "departures_2025": 1052.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "MEM \u2192 SJU",
+          "tonnes_2025": 21307.83224958773,
+          "departures_2025": 564.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "MEM \u2192 BQN",
+          "tonnes_2025": 20293.74894215746,
+          "departures_2025": 537.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 SDF",
+          "tonnes_2025": 17004.51479925506,
+          "departures_2025": 1061.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "CVG \u2192 SJU",
+          "tonnes_2025": 13229.40838534161,
+          "departures_2025": 382.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 MEM",
+          "tonnes_2025": 10850.0156729503,
+          "departures_2025": 446.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "BQN \u2192 MEM",
+          "tonnes_2025": 10172.855334847589,
+          "departures_2025": 316.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 MIA",
+          "tonnes_2025": 9422.392655383399,
+          "departures_2025": 3018.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SDF \u2192 PBI",
+          "tonnes_2025": 8593.88396555227,
+          "departures_2025": 258.0,
+          "map_status": "Missing/ambiguous coordinates"
+        },
+        {
+          "market": "MCO \u2192 SJU",
+          "tonnes_2025": 7916.80799563038,
+          "departures_2025": 6409.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "SJU \u2192 EWR",
+          "tonnes_2025": 6677.97012245748,
+          "departures_2025": 2470.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "MEM \u2192 PBI",
+          "tonnes_2025": 6603.24985134738,
+          "departures_2025": 206.0,
+          "map_status": "Missing/ambiguous coordinates"
+        },
+        {
+          "market": "JAX \u2192 SJU",
+          "tonnes_2025": 6527.60107665589,
+          "departures_2025": 387.0,
+          "map_status": "Country conflict"
+        },
+        {
+          "market": "PBI \u2192 MEM",
+          "tonnes_2025": 5485.46761706482,
+          "departures_2025": 240.0,
+          "map_status": "Missing/ambiguous coordinates"
+        }
+      ]
+    }
+  },
+  "all_source_records": {
+    "2024": {
+      "corridors": 40740,
+      "mapped_corridors": 38414,
+      "corridor_pct": 94.2906234658812,
+      "tonnes": 24108739.442412302,
+      "departures": 10682376.0,
+      "freight_pct": 98.56754955260487,
+      "departures_pct": 96.93549450047442,
+      "unmapped_tonnes": 345345.74600415427,
+      "unmapped_departures": 327362.0,
+      "impacts": [
+        {
+          "map_status": "Country conflict",
+          "tonnes": 307331.0099811159,
+          "departures": 237388.0
+        },
+        {
+          "map_status": "Mapped",
+          "tonnes": 23763393.696408145,
+          "departures": 10355014.0
+        },
+        {
+          "map_status": "Missing/ambiguous coordinates",
+          "tonnes": 38014.73602303839,
+          "departures": 89974.0
+        }
+      ]
+    },
+    "2025": {
+      "corridors": 41489,
+      "mapped_corridors": 39412,
+      "corridor_pct": 94.99385379257153,
+      "tonnes": 23032218.74155432,
+      "departures": 10863635.0,
+      "freight_pct": 98.6542038493773,
+      "departures_pct": 96.92039542933834,
+      "unmapped_tonnes": 309966.7132268383,
+      "unmapped_departures": 334557.0,
+      "impacts": [
+        {
+          "map_status": "Country conflict",
+          "tonnes": 271231.0293262593,
+          "departures": 245198.0
+        },
+        {
+          "map_status": "Mapped",
+          "tonnes": 22722252.028327484,
+          "departures": 10529078.0
+        },
+        {
+          "map_status": "Missing/ambiguous coordinates",
+          "tonnes": 38735.683900579046,
+          "departures": 89359.0
+        }
+      ]
+    }
+  }
+}

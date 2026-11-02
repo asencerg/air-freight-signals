@@ -1,0 +1,38 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.env*
+.streamlit/secrets.toml
+data/*
+*.duckdb*
+*.zip
+
+# Raw source files remain local pending redistribution clearance.
+*.parquet
+t100_seg_*.csv
+szx-anc-source.csv
+
+# Local-only HTML embeds third-party JavaScript pending notice review.
+/docs/cases/szx-anc/case-study.html
+.idea/
+*.iml
+
+# Official source uploads/extracts are never committed outside data/ either.
+T_T100_SEGMENT_ALL_CARRIER*
+airports.csv
+regions.csv
+countries.csv
+
+# Only the reviewed, versioned analytical package may be committed.
+!/data/processed/
+/data/processed/*
+!/data/processed/segments-v1.parquet
+!/data/processed/airports-v1.parquet
+!/data/processed/manifest.json
+
+.DS_Store
+Thumbs.db
+*.log
+.coverage
+htmlcov/
+.vscode/

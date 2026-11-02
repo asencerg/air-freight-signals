@@ -1,0 +1,24 @@
+{
+  "source": "official BTS annual exports",
+  "historical_mirror_commit": "52aa3d888dabe6a38e799064dc28627bc0d68f92",
+  "source_extract_path": "data/official/derived/szx-anc-source.csv",
+  "files": [
+    {
+      "year": 2024,
+      "source_rows": 52,
+      "filename": "T_T100_SEGMENT_ALL_CARRIER_20261101_024444.zip",
+      "sha256": "fb6d4ac947bd3a3f6612f6ab0c0a55b3c04a98daefe6b481d5c8a184c3c80904",
+      "csv_sha256": "c430bcfae3ade4ba455942ec25f5c1bad9b3e964d7b8d5f20a8a888430085b60"
+    },
+    {
+      "year": 2025,
+      "source_rows": 74,
+      "filename": "T_T100_SEGMENT_ALL_CARRIER_20261101_024054.zip",
+      "sha256": "b592928af283809a777e89f8b79c24c5b574ddd22ae5eb3b39f4029eaccde6b9",
+      "csv_sha256": "c56953d4028ccd47c33a5745f95b72a636b9ff7397237c2351e22d186d3d643f"
+    }
+  ],
+  "rows": 126,
+  "monthly_hhi_lower_count": 12,
+  "source_extract_sha256": "bdc53146809a9d688e8de5bc762b227ba5dbbe8b3d8dc9eb5b9befd01ac2af7c"
+}

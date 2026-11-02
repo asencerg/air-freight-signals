@@ -1,0 +1,20 @@
+{
+  "commit": "52aa3d888dabe6a38e799064dc28627bc0d68f92",
+  "files": [
+    {
+      "year": 2024,
+      "source_rows": 52,
+      "sha256": "ae74330ab2783e731df3900b97027393c70ef75595b2976644802305e75f941c",
+      "git_blob": "821d69067951d7789d8b972fe01f459a285401ca"
+    },
+    {
+      "year": 2025,
+      "source_rows": 74,
+      "sha256": "93175434cd9e3ea20df157bfcd7382c250484088a9e394845756ac5d6a2ad56f",
+      "git_blob": "d8fc8233129f43509478e5343af5f1a19631167d"
+    }
+  ],
+  "rows": 126,
+  "monthly_hhi_lower_count": 12,
+  "source_extract_sha256": "49e8d5e25763df07cad889258bf2a2a0f194bee7aefeaf814adee597b89b66bf"
+}
