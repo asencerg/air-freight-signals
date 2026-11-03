@@ -118,8 +118,12 @@ def test_home_is_bounded_and_does_not_load_full_pandas_or_maps(monkeypatch):
     assert len(list(a))<100
 
 
-def test_geographic_navigation_filter_reset_and_empty_state():
+def test_geographic_navigation_filter_reset_and_empty_state(monkeypatch):
     from streamlit.testing.v1 import AppTest
+    import streamlit as st
+    from atlas import map_component
+    # AppTest mocks the v2 component registry; real viewport/click events are covered in Chromium.
+    monkeypatch.setattr(map_component,'render_map',lambda fig,epoch,on_event,**kwargs:st.plotly_chart(fig))
     a=AppTest.from_file('app.py').run(timeout=30)
     a.sidebar.radio(key='view').set_value('Cargo Corridor Explorer').run(timeout=30)
     assert not a.exception and len(a.get('plotly_chart'))==2
@@ -127,8 +131,12 @@ def test_geographic_navigation_filter_reset_and_empty_state():
     assert 'SZX → ANC' in a.selectbox(key='map_selected').options
     a.selectbox(key='map_selected').select('SZX → ANC').run(timeout=30)
     assert not a.exception
+    a.selectbox(key='map_focus').select('East Asia / North Pacific').run(timeout=30)
+    camera=dict(a.session_state['map_view'])
     a.text_input(key='map_search').set_value('NO SUCH ROUTE').run(timeout=30)
     assert any('No safely mappable' in i.value for i in a.info)
     next(b for b in a.button if b.label=='Reset filters').click().run(timeout=30)
     assert a.selectbox(key='map_origin').value=='All'
+    assert a.selectbox(key='map_focus').value=='East Asia / North Pacific'
+    assert a.session_state['map_view']==camera
     assert not a.exception

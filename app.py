@@ -19,6 +19,9 @@ st.title('Air Freight Signals')
 st.caption('Evidence of change across aviation freight corridors.')
 st.caption('AVIATION RESEARCH / 2024–2025 · Reported directional segments, not global shipment flows')
 view=st.sidebar.radio('Explore',['Market Overview','Cargo Corridor Explorer','Research Findings','Case Studies'],key='view')
+if st.session_state.get('map_workspace')!=view:
+    st.session_state['map_mount']=st.session_state.get('map_mount',0)+1
+    st.session_state['map_workspace']=view
 if view=='Case Studies':
     from atlas.case_study import render_featured_case
     render_featured_case()
@@ -75,6 +78,8 @@ def reset_filters():
     for key in ['map_origin','map_destination','map_country','map_region']:st.session_state[key]='All'
     st.session_state['map_search']=''
     st.session_state['map_min']=0
+    st.session_state['map_hub']='All'
+    st.session_state['map_hub_direction']='Both directions'
     st.session_state['map_change']='All changes'
 st.sidebar.button('Reset filters',on_click=reset_filters)
 with st.sidebar.expander('Sources and methodology'):

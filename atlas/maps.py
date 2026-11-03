@@ -1,40 +1,65 @@
-"""Local-only Plate Carrée map. Imported only on explorer/case activation."""
+"""Offline geographic figures, with display encodings separate from analysis."""
 import json,math
+from functools import lru_cache
 from pathlib import Path
 import plotly.graph_objects as go
-from atlas.geography import great_circle
+from atlas.map_view import FOCUS,route_arc,route_handles,metric,encoding
 
 
-def route_map(routes,year,selected=None):
+@lru_cache(maxsize=2)
+def background(name):
+    return json.loads((Path(__file__).resolve().parents[1]/'assets'/name).read_text(encoding='utf-8'))
+
+
+def route_map(routes,year,selected=None,mode='Freight volume',view=None,revision=0):
+    view=view or {'x':list(FOCUS['World'][0]),'y':list(FOCUS['World'][1])}
     fig=go.Figure()
-    coast=json.loads((Path(__file__).resolve().parents[1]/'assets/coastlines-110m.json').read_text(encoding='utf-8'))
-    xs,ys=[],[]
-    for line in coast:
-        for i,(x,y) in enumerate(line):
-            if i and abs(x-line[i-1][0])>180:xs.append(None);ys.append(None)
-            xs.append(x);ys.append(y)
-        xs.append(None);ys.append(None)
-    fig.add_trace(go.Scatter(x=xs,y=ys,mode='lines',line=dict(color='#b5bbb5',width=.6),hoverinfo='skip',showlegend=False))
-    max_t=max(float(routes[f'tonnes_{year}'].max()),1) if len(routes) else 1
-    centers={'Increase / unchanged':([],[],[],[]),'Decrease':([],[],[],[])}
-    for r in routes.to_dict('records'):
-        parts=great_circle(r['origin_longitude_deg'],r['origin_latitude_deg'],r['destination_longitude_deg'],r['destination_latitude_deg'])
+    # Three adjacent worlds support continuous Pacific focus without moving observations.
+    for name,color,width,fill in [('land-110m.json','#e8e9df',0,'toself'),('coastlines-110m.json','#a4b4b7',.65,None)]:
+        xs,ys=[],[]
+        for shift in [-360,0,360]:
+            for line in background(name):
+                xs.extend([p[0]+shift for p in line]+[None]);ys.extend([p[1] for p in line]+[None])
+        fig.add_trace(go.Scatter(x=xs,y=ys,mode='lines',fill=fill,fillcolor=color,line=dict(color=color,width=width),hoverinfo='skip',showlegend=False))
+    rows=routes.to_dict('records');values=[metric(r,year,mode) for r in rows]
+    maximum=max([abs(v) for v in values if v is not None and math.isfinite(v)]+[1])
+    pairs={(r['origin'],r['destination']) for r in rows};handles=[];positions=route_handles(rows)
+    # Draw selection last so its halo and endpoints remain visible above crossing corridors.
+    rows.sort(key=lambda r:r['market']==selected)
+    for r in rows:
+        points=route_arc(r);value=metric(r,year,mode);color,width,label=encoding(value,mode,maximum);active=r['market']==selected
+        reciprocal=(r['destination'],r['origin']) in pairs
+        pct=r.get('tonnes_change_pct');pct_text=f'{pct:+.1f}%' if pct is not None and math.isfinite(pct) else 'undefined'
+        text=(f"<b>{r['market']}</b><br>{year}: {r[f'tonnes_{year}']:,.0f} metric tonnes · {r[f'departures_{year}']:,.0f} departures"
+              f"<br>Freight change: {r['absolute_change_tonnes']:+,.0f} t ({pct_text})<br>HHI change: {r['hhi_change']:+,.0f} points")
+        if mode=='Freight change · %' and value is None:text+='<br>Percentage encoding suppressed: baseline below 1,000 t'
+        if reciprocal:text+='<br>Reciprocal pair: use the directional handles or corridor list'
         x,y=[],[]
-        for part in parts:
-            x += [v[0] for v in part]+[None];y += [v[1] for v in part]+[None]
-        kind='Increase / unchanged' if r['absolute_change_tonnes']>=0 else 'Decrease'
-        color='#285f65' if kind=='Increase / unchanged' else '#a55444'
-        active=r['market']==selected
-        text=f"{r['market']}<br>{year}: {r[f'tonnes_{year}']:,.0f} metric tonnes<br>{r[f'departures_{year}']:,.0f} departures<br>Change: {r['absolute_change_tonnes']:+,.0f} tonnes ({r['tonnes_change_pct']:+.1f}%)<br>HHI change: {r['hhi_change']:+,.0f}"
-        fig.add_trace(go.Scatter(x=x,y=y,mode='lines+markers',customdata=[[r['market']] for _ in x],marker=dict(size=1,opacity=0),line=dict(color='#192e45' if active else color,width=(3 if active else .6+2*math.sqrt(r[f'tonnes_{year}']/max_t))),opacity=1 if active else .55,hoverinfo='skip',showlegend=False))
-        # A handle 40% along the directed arc separates reciprocal-route selection points.
-        cx,cy,ct,cd=centers[kind];points=[point for part in parts for point in part];handle=points[int((len(points)-1)*.4)]
-        cx.append(handle[0]);cy.append(handle[1]);ct.append(text);cd.append([r['market']])
+        for shift in [-360,0,360]:
+            x.extend([p[0]+shift for p in points]+[None]);y.extend([p[1] for p in points]+[None])
         if active:
-            part=max(parts,key=len);i=max(1,len(part)//2)
-            fig.add_annotation(x=part[i][0],y=part[i][1],ax=part[i-1][0],ay=part[i-1][1],xref='x',yref='y',axref='x',ayref='y',showarrow=True,arrowhead=3,arrowsize=1.7,arrowwidth=2,arrowcolor='#192e45',text='')
-            fig.add_trace(go.Scatter(x=[r['origin_longitude_deg'],r['destination_longitude_deg']],y=[r['origin_latitude_deg'],r['destination_latitude_deg']],mode='markers+text',marker=dict(size=9,color='#192e45',symbol=['circle','diamond']),text=[r['origin'],r['destination']],textposition=['bottom center','top center'],showlegend=False,hoverinfo='text'))
-    for kind,(x,y,text,data) in centers.items():
-        fig.add_trace(go.Scatter(x=x,y=y,text=text,customdata=data,mode='markers',name=kind+' · route handle',marker=dict(size=7,color='#285f65' if kind=='Increase / unchanged' else '#a55444',symbol='circle' if kind=='Increase / unchanged' else 'diamond'),hovertemplate='%{text}<extra></extra>'))
-    fig.update_layout(height=485,margin=dict(l=0,r=0,t=5,b=5),paper_bgcolor='#f7f6f2',plot_bgcolor='#f1f2ee',font=dict(family='Arial',color='#24303a'),legend=dict(orientation='h',y=1.04,x=0),dragmode='pan',clickmode='event+select',uirevision='atlas-world',xaxis=dict(range=[-180,180],title=None,showgrid=True,gridcolor='#e0e2dc',dtick=60,zeroline=False),yaxis=dict(range=[-60,85],title=None,showgrid=True,gridcolor='#e0e2dc',dtick=30,zeroline=False))
+            fig.add_trace(go.Scatter(x=x,y=y,mode='lines',line=dict(color='#ffffff',width=width+5),hoverinfo='skip',showlegend=False))
+        # Lines provide context; only explicit directional handles receive pointer hits.
+        # Nearby parallel and reciprocal lines must not steal another route's handle.
+        fig.add_trace(go.Scatter(x=x,y=y,mode='lines',line=dict(color=color,width=width+(.8 if active else 0)),
+            opacity=1 if active else .7,hoverinfo='skip',showlegend=False))
+        handle=positions[r['market']]
+        for shift in [-360,0,360]:handles.append((handle[0]+shift,handle[1],text,r['market'],color,active))
+        if active:
+            for shift in [-360,0,360]:
+                i=max(1,len(points)//2)
+                fig.add_annotation(x=points[i][0]+shift,y=points[i][1],ax=points[i-2][0]+shift,ay=points[i-2][1],xref='x',yref='y',axref='x',ayref='y',showarrow=True,arrowhead=3,arrowsize=1.6,arrowwidth=2,arrowcolor='#203e55',text='')
+                fig.add_trace(go.Scatter(x=[points[0][0]+shift,points[-1][0]+shift],y=[points[0][1],points[-1][1]],mode='markers+text',
+                    marker=dict(size=[11,13],color=['#ffffff','#203e55'],line=dict(color='#203e55',width=2),symbol=['circle','diamond']),
+                    text=[r['origin']+' · origin',r['destination']+' · destination'],textposition=['bottom right' if points[0][0]+shift<sum(view['x'])/2 else 'bottom left',
+                                  'top right' if points[-1][0]+shift<sum(view['x'])/2 else 'top left'],
+                    textfont=dict(size=12,color='#203e55'),hoverinfo='skip',showlegend=False))
+    fig.add_trace(go.Scatter(x=[h[0] for h in handles],y=[h[1] for h in handles],text=[h[2] for h in handles],customdata=[[h[3]] for h in handles],mode='markers',zorder=10,
+        marker=dict(size=[16 if h[5] else 13 for h in handles],color=[h[4] for h in handles],line=dict(color='white',width=1.5),symbol='circle'),
+        hovertemplate='%{text}<extra></extra>',showlegend=False))
+    tickvals=list(range(-540,541,30));ticktext=[f'{abs((x+180)%360-180)}°'+('W' if (x+180)%360-180<0 else 'E' if (x+180)%360-180>0 else '') for x in tickvals]
+    fig.update_layout(height=530,margin=dict(l=36,r=12,t=12,b=26),paper_bgcolor='#f7f6f2',plot_bgcolor='#eaf2f4',font=dict(family='Arial',color='#243b4b'),
+        dragmode='pan',clickmode='event',hovermode='closest',hoverdistance=14,uirevision=f'view-{revision}',
+        xaxis=dict(range=view['x'],minallowed=-540,maxallowed=540,title=None,showgrid=True,gridcolor='#d8e3e5',tickvals=tickvals,ticktext=ticktext,tickfont=dict(size=10),zeroline=False,showline=False),
+        yaxis=dict(range=view['y'],minallowed=-90,maxallowed=90,title=None,showgrid=True,gridcolor='#d8e3e5',dtick=30,ticksuffix='°',tickfont=dict(size=10),zeroline=False,showline=False))
     return fig

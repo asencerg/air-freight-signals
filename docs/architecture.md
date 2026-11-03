@@ -18,7 +18,7 @@ The DuckDB query path uses pounds × **0.00045359237**. The original analytical 
 
 `atlas.research` supplies one record per directional corridor; `atlas.presentation` renders one selected brief and its narrow carrier/month evidence. `atlas.style` and committed `.streamlit/config.toml` define system-font editorial styling. Typography uses system fonts without remote font requests.
 
-`atlas.geography` performs safe endpoint joins and coverage arithmetic independently of UI. `atlas.maps` is imported only on explorer activation and uses local coastline coordinates with great-circle route geometry. Map-selected routes and dropdown selection address the same corridor identity. Current route selection rebuilds a bounded map, so viewport reset on selection is possible. `atlas.explorer` reports top-N and weighted-coverage scope explicitly. Map-only omissions do not affect research totals.
+`atlas.geography` performs safe endpoint joins and coverage arithmetic independently of UI. `atlas.maps` is imported only on explorer activation and uses local coastline and land coordinates with great-circle route geometry. Map-selected routes and dropdown selection address the same directional corridor identity. Cached great-circle paths are bounded to 4,096 entries; initial display remains 25 routes, maximum 100. A small built-in Streamlit component bridge returns Plotly viewport and route-click events; validated camera extents persist in session state through figure updates. Regional focus explicitly changes the camera without changing analytical filters. `atlas.explorer` reports top-N and weighted-coverage scope explicitly. Map-only omissions do not affect research totals.
 
 Case Studies imports the case renderer only after navigation. Four validated charts are restyled in memory; the report, underlying case CSV/JSON and original package remain unchanged. Full source narrative and optional local HTML/extract downloads remain accessible without eager homepage rendering.
 
@@ -28,3 +28,5 @@ Case Studies imports the case renderer only after navigation. Four validated cha
 - `python scripts/audit_geography.py`: both eligible and all-source coverage, from committed files only.
 - `python scripts/build_processed.py`: optional original-source package rebuild.
 - `python scripts/build_coastline.py`: optional pinned Natural Earth download/verified compact transformation.
+
+The map bridge disposes its previous listeners, pending camera notification and resize observer before each data render, and releases Plotly resources on unmount. Returning from an empty result set or another workspace creates a fresh component identity while retaining the camera separately in session state. `tests/map_component_lifecycle.mjs` exercises repeated renders, obsolete events, responsive sizing and cleanup using Node’s built-in assertions; pytest runs it when Node is available. Node is optional test tooling, not an application dependency.

@@ -18,3 +18,13 @@ Suggested attribution, displayed beside the map: **Coastline: Natural Earth 1:11
 ## Existing data rights
 
 The airport reference file, its dedication and matching method are unchanged. The official BTS package and its hashes are unchanged. Existing qualifications about the All Carriers dataset, DOT policy evidence, separate NTAD domestic product and public/commercial release remain in [data-provenance.md](data-provenance.md).
+
+## Natural Earth land fill
+
+The matching `ne_110m_land.geojson` comes from the same Natural Earth revision and public-domain statement as the coastline above. [Pinned source](https://raw.githubusercontent.com/nvkelso/natural-earth-vector/ca96624a56bd078437bca8184e78163e5039ad19/geojson/ne_110m_land.geojson).
+
+- Source SHA-256: `9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9`.
+- Compact `assets/land-110m.json`: 85,182 bytes; SHA-256 `4f6e9a66f41aaefb0d2693b4d112abdb440b26186c92727e70abee7cdfc7d566`.
+- `python scripts/build_land.py` verifies the pinned source and output. It keeps exterior polygon rings, omits attributes and interior holes, rounds coordinates to three decimals and writes compact JSON. Land fill is generalized visual context, not a political boundary or navigational dataset.
+
+The application reads both geographic assets locally. No remote tiles, source downloads or API credentials are required during use.

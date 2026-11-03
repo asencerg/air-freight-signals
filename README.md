@@ -4,7 +4,7 @@
 <p align="center"><code>Python 3.12</code> · <code>DuckDB</code> · <code>Parquet</code> · <code>Streamlit</code> · <code>Plotly</code></p>
 <p align="center"><a href="#overview">Overview</a> · <a href="#workspaces">Workspaces</a> · <a href="#research">Research</a> · <a href="#scope-and-methodology">Methodology</a> · <a href="#quick-start">Quick start</a> · <a href="#attribution">Attribution</a> · <a href="#about">About</a></p>
 
-<a href="docs/screenshots/cargo-corridor-explorer.png"><img src="docs/screenshots/cargo-corridor-explorer.png" width="1440" alt="Air Freight Signals Cargo Corridor Explorer showing directional freight routes over locally bundled coastlines"></a>
+<a href="docs/screenshots/cargo-corridor-explorer.png"><img src="docs/screenshots/cargo-corridor-explorer.png" width="1440" alt="Air Freight Signals Cargo Corridor Explorer showing directional freight routes, regional camera controls and locally bundled land and coastlines"></a>
 
 ## Overview
 
@@ -28,7 +28,7 @@ The application starts with **1,121,004 genuine 2024–2025 source observations*
 | Workspace | Research capability |
 |---|---|
 | **Market Overview** | Scoped freight totals, prioritized developments and directional corridor comparisons; bounded tables lead to underlying evidence. |
-| **Cargo Corridor Explorer** | Offline geographic exploration, country and airport filters, directional great-circle routes, selection and coverage exports. |
+| **Cargo Corridor Explorer** | Offline directional routes, persistent camera controls, five metric encodings, airport-hub filters and coverage exports. |
 | **Research Findings** | Freight growth, contraction and carrier-structure signals; search, pagination, matched-month analysis and CSV/Markdown exports. |
 | **Case Studies** | Shenzhen → Anchorage investigated through annual and monthly evidence, carrier contributions, concentration, charts and downloadable narrative. |
 
@@ -66,14 +66,14 @@ flowchart TD
   A --> R[Research signals and rankings]
   R --> S[Streamlit workspaces]
   OA[Verified OurAirports coordinates] --> G[Geographic mapping]
-  NE[Bundled Natural Earth coastlines] --> G
+  NE[Bundled Natural Earth land and coastlines] --> G
   A --> G
   G --> S
   C[Validated case artifacts] --> S
   S --> E[CSV and Markdown exports]
 ```
 
-DuckDB queries the local package into narrow Pandas aggregates. Cached calculations, 15-row research pages and lazy map/case rendering keep the interface bounded. Plotly renders local coastlines without remote tiles. [Architecture](docs/architecture.md).
+DuckDB queries the local package into narrow Pandas aggregates. Cached calculations, 15-row research pages and lazy map/case rendering keep the interface bounded. Plotly renders local land and coastlines without remote tiles. [Architecture](docs/architecture.md).
 
 ## Quick start
 
