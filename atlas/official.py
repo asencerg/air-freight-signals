@@ -1,4 +1,4 @@
-"""Load supplied official annual archives; never silently fall back to mirrors."""
+"""Load official annual archives; never silently fall back to mirrors."""
 from pathlib import Path
 import pandas as pd
 from atlas.ingest import read_dataset

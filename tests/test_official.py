@@ -1,4 +1,4 @@
-"""Integration checks use only the supplied genuine BTS and OurAirports records."""
+"""Integration checks require the original BTS exports and OurAirports references."""
 from pathlib import Path
 import io
 import json
@@ -11,7 +11,7 @@ from atlas.reference import reference_metadata, match_airports
 
 BASE = Path('data/official')
 AVAILABLE = len(list(BASE.glob('T_T100_SEGMENT_ALL_CARRIER_*.zip'))) == 2
-pytestmark = pytest.mark.skipif(not AVAILABLE, reason='Supplied official BTS uploads unavailable')
+pytestmark = pytest.mark.skipif(not AVAILABLE, reason='Original official BTS source archives unavailable')
 
 
 @pytest.fixture(scope='module')

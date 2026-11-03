@@ -60,4 +60,4 @@ def render_featured_case():
     if source.exists() and hashlib.sha256(source.read_bytes()).hexdigest() == audit['source_extract_sha256']:
         st.download_button('Inspect underlying source observations (126 rows, CSV)', source.read_bytes(), 'szx-anc-source.csv', 'text/csv')
     else:
-        st.caption('Local observation extract unavailable or changed. Use the pinned source-file links in the case or regenerate it from the retained annual files.')
+        st.caption('The observation extract is absent or does not match its checksum. Rebuild it from the original annual exports using the case study’s reproduction instructions.')

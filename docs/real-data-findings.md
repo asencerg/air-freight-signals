@@ -72,4 +72,4 @@ Official-source revalidation: all five findings below were recalculated from the
 
 **Next research steps:** Verify BTS extract coverage and revisions; inspect monthly and carrier evidence; corroborate with airport statistics and published schedules.
 
-Selection: five distinct, material questions among full-year eligible pairs, with at least 10,000 baseline tonnes. This is an editorial shortlist spanning growth, contraction, concentration and freight/frequency divergence, not a statistical ranking. All service classes are included; class-level totals are retained in the source. See real-data-validation.md for provenance and reconciliation.
+Selection: five distinct, material questions among full-year eligible pairs, with at least 10,000 baseline tonnes. This is an editorial shortlist spanning growth, contraction, concentration and freight/frequency divergence, not a statistical ranking. All service classes are included; class-level totals are retained in the source. See [official reconciliation](official-data-reconciliation.md) for source lineage and validation.

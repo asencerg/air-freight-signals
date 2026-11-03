@@ -134,7 +134,7 @@ Reviewed 1 November 2026. **Primary source: the two official US DOT BTS T-100 Se
 
 {table(overview)}
 
-Reporting years come from YEAR, not the download timestamp. Both original ZIP filenames and bytes are retained in ignored `data/official/`; SHA-256, member hashes and the exact 50 columns are in [the audit](official-data-audit.json). Each ZIP contains one ordinary comma-separated `T_T100_SEGMENT_ALL_CARRIER.csv`. It is extracted without renaming under an archive-specific directory to avoid filename collision. All three OurAirports CSVs are preserved alongside them.
+Reporting years come from YEAR, not the download timestamp. Original ZIP filenames, SHA-256 checksums, member hashes and the exact 50 columns are recorded in [the audit](official-data-audit.json). Reproduction requires those archives under `data/official/`. Each ZIP contains one ordinary comma-separated `T_T100_SEGMENT_ALL_CARRIER.csv`. It is extracted without renaming under an archive-specific directory to avoid filename collision. Reproduction also requires the three matching OurAirports CSVs in that directory.
 
 ## Periods, scope and units
 
@@ -185,7 +185,7 @@ python -m streamlit run app.py --browser.gatherUsageStats false
 
 Place the five original source files under `data/official/`. Reconciliation additionally requires the historical mirror files under `data/`; primary ingestion and official case generation do not. In the app, upload the official ZIPs directly; historical Parquet/CSV support remains for comparison, but mixing official ZIPs with mirror uploads in one analysis is rejected.
 
-The archives are identified as BTS exports by their acquisition record and schema; their download channel is not independently authenticated. Direct-source possession resolves dependence on third-party Parquet packaging for current calculations, but does not itself establish redistribution rights. The full documented DOT order is now reviewed in the [current rights assessment](data-provenance.md); the BTS restriction page and §298.70 are also reviewed, while current regulatory applicability, completeness/release status and the field dictionary still require verification. OurAirports' previously verified official repository dedication remains applicable to the matching snapshot; mirror licensing is still relevant to historical files only. See data-provenance.md for the policy limitations.
+The archives are identified as BTS exports by their acquisition record and schema; their download channel is not independently authenticated. Direct-source possession resolves dependence on third-party Parquet packaging for current calculations, but does not itself establish redistribution rights. The [source-rights assessment](data-provenance.md) addresses DOT Order 1351.34, BTS Restricted Data guidance and §298.70. Current regulatory applicability, completeness/release status and the field dictionary remain unverified. OurAirports' previously verified official repository dedication remains applicable to the matching snapshot; mirror licensing is still relevant to historical files only. See data-provenance.md for the policy limitations.
 '''
     (ROOT/'docs/official-data-reconciliation.md').write_text(report)
     print(overview.to_string(index=False));print(json.dumps(audit['reconciliation'],indent=2));print(json.dumps(coverage,indent=2));print(five.to_string(index=False))

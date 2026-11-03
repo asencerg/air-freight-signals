@@ -99,7 +99,7 @@
     "QUARTER",
     "RAMP_TO_RAMP"
   ],
-  "not_retained_rationale": "Unused descriptive geography/version IDs and time fields are not needed for current freight, frequency, concentration, aircraft/class or coordinate analyses. Originals remain unchanged locally.",
+  "not_retained_rationale": "Unused descriptive geography/version IDs and time fields are not needed for current freight, frequency, concentration, aircraft/class or coordinate analyses. The projection does not modify the original input files.",
   "files": {
     "segments-v1.parquet": {
       "rows": 1121004,

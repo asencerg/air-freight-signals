@@ -1,4 +1,4 @@
-"""Build a compact, lossless-at-declared-grain candidate from official uploads only.
+"""Build a compact, lossless-at-declared-grain package from official exports.
 
 Source-specific redistribution conditions are documented in data-provenance.md.
 This script writes local data; it does not stage or publish anything.
@@ -109,7 +109,7 @@ def build():
       'sources':sources,'grain':DIMENSIONS,'measures':MEASURES,'freight_unit':'pounds',
       'metric_tonnes_per_pound':0.00045359237,'aggregation':'Sum integer measures at declared grain; count every original row, including zero freight/departures. No scope exclusions. Aircraft type is a numeric BTS code: CSV padding such as 042 normalizes to 42; carrier/entity strings keep leading zeros.',
       'not_retained':sorted(set(raw.columns)-set(DIMENSIONS)-set(MEASURES)),
-      'not_retained_rationale':'Unused descriptive geography/version IDs and time fields are not needed for current freight, frequency, concentration, aircraft/class or coordinate analyses. Originals remain unchanged locally.',
+      'not_retained_rationale':'Unused descriptive geography/version IDs and time fields are not needed for current freight, frequency, concentration, aircraft/class or coordinate analyses. The projection does not modify the original input files.',
       'files':{'segments-v1.parquet':segment_file,'airports-v1.parquet':airport_file},'annual_totals':annual,'validation':checks,
       'reference_sources':{name:sha(ROOT/'data/official'/name) for name in ['airports.csv','regions.csv','countries.csv']},
       'coordinate_coverage':{'matched':int(airports.coordinate_match.sum()),'total':len(airports),'statuses':airports.match_status.value_counts().to_dict()},

@@ -4,7 +4,7 @@
 
 OurAirports enrichment accepts the airport, region and country CSVs: airport iata_code matches are unique and country-checked; region and country labels join explicitly by ISO codes. No coordinate-based or ICAO/local-code fallback occurs.
 
-The earlier source-access and mirror notes below are retained as historical context; official ingestion no longer depends on the mirror.
+The mirror is a historical comparator, not a dependency of official-source ingestion.
 
 ## BTS source and export requirements
 
@@ -31,7 +31,7 @@ The historical comparison uses annual files from `Unison-Consulting-Inc/AirportD
 - https://github.com/Unison-Consulting-Inc/AirportData/blob/52aa3d888dabe6a38e799064dc28627bc0d68f92/t100_seg/t100_seg_2024.parquet
 - https://github.com/Unison-Consulting-Inc/AirportData/blob/52aa3d888dabe6a38e799064dc28627bc0d68f92/t100_seg/t100_seg_2025.parquet
 
-Use **Download raw file**, save under ignored `data/`, and upload both files together. The app accepts these Parquet files directly. Source names `YEAR`, `MONTH`, `ORIGIN`, `DEST`, `UNIQUE_CARRIER`, `FREIGHT`, `DEPARTURES_PERFORMED` map identically to the internal schema. `CLASS`, aircraft strata, airline IDs, carrier names and all other source columns are retained. No direction reversal or conversion occurs during ingestion; freight remains pounds, with metric-tonne conversion only in analysis. CSV uploads now also preserve extra columns instead of discarding service strata.
+Use **Download raw file**, save under ignored `data/`, and upload both files together. The app accepts these Parquet files directly. Source names `YEAR`, `MONTH`, `ORIGIN`, `DEST`, `UNIQUE_CARRIER`, `FREIGHT`, `DEPARTURES_PERFORMED` map identically to the internal schema. `CLASS`, aircraft strata, airline IDs, carrier names and all other source columns are retained. No direction reversal or conversion occurs during ingestion; freight remains pounds, with metric-tonne conversion only in analysis. CSV ingestion also preserves extra columns, including service strata.
 
 The mirror README attributes these files to BTS T-100 Segment (All Carriers), form `FMG`, and `t100_download.py`; that generator is not in this repository, so its transformations cannot be independently audited here. The freight-pound interpretation follows the BTS T-100 field convention, not Parquet unit metadata; the files contain no unit metadata. This is a genuine third-party BTS-derived extract, not a direct certified BTS download. Its manifest's latest 2025 record count matches the file; no 2024 manifest entry was found.
 
