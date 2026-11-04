@@ -62,8 +62,12 @@ def render_explorer(records,airports,engine,months,names,carrier_labels):
         # Explicitly synchronize recreated controls with their retained Python values.
         current=st.session_state.get('map_selected')
         st.session_state['map_selected']=current if current in options else options[0]
+        if 'map_highlight' not in st.session_state or current not in options:
+            st.session_state['map_highlight']=st.session_state['map_selected']
+        def highlight_selection():
+            st.session_state['map_highlight']=st.session_state['map_selected']
         nav=st.columns([3,2,1,1],vertical_alignment='bottom')
-        selected=nav[0].selectbox('Selected directional corridor',options,key='map_selected',help='Search by airport code. Direction matters: A → B is separate from B → A. List contains the displayed top-N routes.')
+        selected=nav[0].selectbox('Selected directional corridor',options,key='map_selected',on_change=highlight_selection,help='Search by airport code. Direction matters: A → B is separate from B → A. List contains the displayed top-N routes.')
         st.session_state['map_focus']=st.session_state.get('map_focus',st.session_state.get('map_applied_focus','World'))
         focus=nav[1].selectbox('Geographic focus',list(FOCUS),key='map_focus',help='Moves the camera only; does not filter corridors or change coverage.')
         if st.session_state.get('map_applied_focus')!=focus:
@@ -87,10 +91,13 @@ def render_explorer(records,airports,engine,months,names,carrier_labels):
             if valid_view(event.get('view')):st.session_state['map_view']=event['view']
             if event.get('kind')=='select' and event.get('market') in options:
                 st.session_state['map_selected']=event['market']
-        fig=route_map(mapped,year,selected,mode,st.session_state.get('map_view'),st.session_state.get('map_epoch',0))
+                st.session_state['map_highlight']=event['market']
+            elif event.get('kind')=='clear':
+                st.session_state['map_highlight']=None
+        fig=route_map(mapped,year,selected,mode,st.session_state.get('map_view'),st.session_state.get('map_epoch',0),emphasized=st.session_state.get('map_highlight')==selected)
         render_map(fig,st.session_state.get('map_epoch',0),on_map_event,key=canvas_key)
         st.caption(LEGENDS[mode])
-        st.caption('Hollow circle = origin · filled diamond = destination · arrow = direction. Click a large directional handle or use the searchable corridor list; route lines do not intercept selections. Pan / wheel zoom; focus controls move the view only.')
+        st.caption('Hollow circle = origin · filled diamond = destination · arrow = direction. Click a large directional handle or use the searchable corridor list; route lines do not intercept selections. Click empty map space to clear emphasis while keeping the research selection. Pan / wheel zoom; focus controls move the view only.')
         st.caption('Plate Carrée · great-circle context, not flown tracks. Coastline and land: Natural Earth 1:110m (public domain). Airport references: OurAirports. No remote tiles or API keys.')
         r=mapped[mapped.market==selected].iloc[0].to_dict()
         render_detail(r,engine,months,names,carrier_labels,key='map')

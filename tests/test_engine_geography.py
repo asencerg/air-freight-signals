@@ -131,6 +131,15 @@ def test_geographic_navigation_filter_reset_and_empty_state(monkeypatch):
     assert 'SZX → ANC' in a.selectbox(key='map_selected').options
     a.selectbox(key='map_selected').select('SZX → ANC').run(timeout=30)
     assert not a.exception
+    assert a.session_state['map_highlight']=='SZX → ANC'
+    a.session_state['map_highlight']=None
+    a.selectbox(key='map_mode').select('Departures').run(timeout=30)
+    assert a.selectbox(key='map_selected').value=='SZX → ANC'
+    assert a.session_state['map_highlight'] is None
+    other=next(v for v in a.selectbox(key='map_selected').options if v!='SZX → ANC')
+    a.selectbox(key='map_selected').select(other).run(timeout=30)
+    assert a.session_state['map_highlight']==other
+    a.selectbox(key='map_selected').select('SZX → ANC').run(timeout=30)
     a.selectbox(key='map_focus').select('East Asia / North Pacific').run(timeout=30)
     camera=dict(a.session_state['map_view'])
     a.text_input(key='map_search').set_value('NO SUCH ROUTE').run(timeout=30)

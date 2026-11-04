@@ -74,3 +74,27 @@ def test_handles_separate_nearby_parallel_routes_and_are_order_independent(route
  assert math.hypot(longitude(a[0]-b[0]),a[1]-b[1])>=5
  for row in rows:
   assert handles[row['market']] in arc(row['origin_longitude_deg'],row['origin_latitude_deg'],row['destination_longitude_deg'],row['destination_latitude_deg'])
+
+
+def test_emphasis_only_changes_route_hierarchy_and_preserves_selection(routes):
+ safe=routes[routes.mappable].sort_values('tonnes_2025',ascending=False).head(100)
+ selected='HKG → ANC'
+ for mode in MODES:
+  highlighted=route_map(safe,2025,selected,mode,emphasized=True)
+  normal=route_map(safe,2025,selected,mode,emphasized=False)
+  def lines(fig):return {t.meta['market']:t for t in fig.data if t.meta and t.meta.get('role')=='route'}
+  h,n=lines(highlighted),lines(normal)
+  assert set(h)==set(n)==set(safe.market)
+  assert h[selected].opacity==1
+  assert all(t.opacity==.55 for key,t in h.items() if key!=selected)
+  assert all(t.opacity==.7 for t in n.values())
+  for market in h:
+   assert h[market].line.color==n[market].line.color
+   if market!=selected:assert h[market].line.width==n[market].line.width
+   assert h[market].x==n[market].x and h[market].y==n[market].y
+  assert highlighted.layout.meta['highlighted']==selected and normal.layout.meta['highlighted'] is None
+  assert normal.layout.meta['selected']==selected
+  assert normal.layout.annotations==highlighted.layout.annotations
+  assert [t.to_json() for t in normal.data if t.mode=='markers+text']==[t.to_json() for t in highlighted.data if t.mode=='markers+text']
+  assert normal.data[-1].x==highlighted.data[-1].x and normal.data[-1].y==highlighted.data[-1].y
+  assert len(highlighted.data)==len(normal.data)+1  # Existing halo only; no duplicated route network.

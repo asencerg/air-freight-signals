@@ -32,6 +32,8 @@ Pan/zoom extents and exact selected corridor identity are returned through Strea
 
 Selected corridors have a white halo, a direction arrow and labeled endpoints: hollow circle for origin, filled diamond for destination. Large handles sit along the real directed arcs, normally at 38% of their length. Nearby handles are spread across alternative sampled arc points to distinguish parallel and reciprocal routes. Placement uses stable corridor ordering and does not change when selection or encoding changes. Route lines are noninteractive context so nearby parallel or reciprocal paths cannot intercept handle selections. Use the large handles or searchable corridor list; densely overlapping handles may still require the list. Unmapped endpoints are never guessed.
 
+Analytical selection and visual emphasis are separate. Selecting a corridor in the list or clicking its handle emphasizes that route at full opacity with its existing halo; other route lines use 0.55 opacity. Clicking empty land or ocean clears only that emphasis and restores every route line to the normal 0.70 opacity. The selected corridor, research details, endpoint markers and direction arrow remain. Encodings, filters and camera state are retained; a new selection reapplies emphasis. Handles remain fully visible. Drag gestures, route geometry, markers, labels and map controls do not count as empty-space clicks.
+
 ## Map encodings
 
 Routes remain ranked by the selected year's freight for the display cap; switching encoding does not silently select a new analytical population. Widths are bounded to 1–6 pixels, with a selected-route outline added separately.

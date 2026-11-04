@@ -11,7 +11,7 @@ def background(name):
     return json.loads((Path(__file__).resolve().parents[1]/'assets'/name).read_text(encoding='utf-8'))
 
 
-def route_map(routes,year,selected=None,mode='Freight volume',view=None,revision=0):
+def route_map(routes,year,selected=None,mode='Freight volume',view=None,revision=0,emphasized=True):
     view=view or {'x':list(FOCUS['World'][0]),'y':list(FOCUS['World'][1])}
     fig=go.Figure()
     # Three adjacent worlds support continuous Pacific focus without moving observations.
@@ -27,7 +27,7 @@ def route_map(routes,year,selected=None,mode='Freight volume',view=None,revision
     # Draw selection last so its halo and endpoints remain visible above crossing corridors.
     rows.sort(key=lambda r:r['market']==selected)
     for r in rows:
-        points=route_arc(r);value=metric(r,year,mode);color,width,label=encoding(value,mode,maximum);active=r['market']==selected
+        points=route_arc(r);value=metric(r,year,mode);color,width,label=encoding(value,mode,maximum);chosen=r['market']==selected;active=emphasized and chosen
         reciprocal=(r['destination'],r['origin']) in pairs
         pct=r.get('tonnes_change_pct');pct_text=f'{pct:+.1f}%' if pct is not None and math.isfinite(pct) else 'undefined'
         text=(f"<b>{r['market']}</b><br>{year}: {r[f'tonnes_{year}']:,.0f} metric tonnes · {r[f'departures_{year}']:,.0f} departures"
@@ -42,10 +42,11 @@ def route_map(routes,year,selected=None,mode='Freight volume',view=None,revision
         # Lines provide context; only explicit directional handles receive pointer hits.
         # Nearby parallel and reciprocal lines must not steal another route's handle.
         fig.add_trace(go.Scatter(x=x,y=y,mode='lines',line=dict(color=color,width=width+(.8 if active else 0)),
-            opacity=1 if active else .7,hoverinfo='skip',showlegend=False))
+            opacity=1 if active else .55 if emphasized and selected else .7,
+            meta={'role':'route','market':r['market']},hoverinfo='skip',showlegend=False))
         handle=positions[r['market']]
         for shift in [-360,0,360]:handles.append((handle[0]+shift,handle[1],text,r['market'],color,active))
-        if active:
+        if chosen:
             for shift in [-360,0,360]:
                 i=max(1,len(points)//2)
                 fig.add_annotation(x=points[i][0]+shift,y=points[i][1],ax=points[i-2][0]+shift,ay=points[i-2][1],xref='x',yref='y',axref='x',ayref='y',showarrow=True,arrowhead=3,arrowsize=1.6,arrowwidth=2,arrowcolor='#203e55',text='')
@@ -59,6 +60,7 @@ def route_map(routes,year,selected=None,mode='Freight volume',view=None,revision
         hovertemplate='%{text}<extra></extra>',showlegend=False))
     tickvals=list(range(-540,541,30));ticktext=[f'{abs((x+180)%360-180)}°'+('W' if (x+180)%360-180<0 else 'E' if (x+180)%360-180>0 else '') for x in tickvals]
     fig.update_layout(height=530,margin=dict(l=36,r=12,t=12,b=26),paper_bgcolor='#f7f6f2',plot_bgcolor='#eaf2f4',font=dict(family='Arial',color='#243b4b'),
+        meta={'selected':selected,'highlighted':selected if emphasized else None},
         dragmode='pan',clickmode='event',hovermode='closest',hoverdistance=14,uirevision=f'view-{revision}',
         xaxis=dict(range=view['x'],minallowed=-540,maxallowed=540,title=None,showgrid=True,gridcolor='#d8e3e5',tickvals=tickvals,ticktext=ticktext,tickfont=dict(size=10),zeroline=False,showline=False),
         yaxis=dict(range=view['y'],minallowed=-90,maxallowed=90,title=None,showgrid=True,gridcolor='#d8e3e5',dtick=30,ticksuffix='°',tickfont=dict(size=10),zeroline=False,showline=False))
