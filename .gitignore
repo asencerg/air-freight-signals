@@ -7,12 +7,12 @@ data/*
 *.duckdb*
 *.zip
 
-# Raw source files remain local pending redistribution clearance.
+# Exclude unversioned source files.
 *.parquet
 t100_seg_*.csv
 szx-anc-source.csv
 
-# Local-only HTML embeds third-party JavaScript pending notice review.
+# Generated HTML embeds third-party JavaScript; keep it outside version control.
 /docs/cases/szx-anc/case-study.html
 .idea/
 *.iml

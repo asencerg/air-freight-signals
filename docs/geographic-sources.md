@@ -13,11 +13,11 @@ The inspected README describes Natural Earth as a â€œpublic domain map datasetâ€
 
 Processing: retain the 134 coastline coordinate lines; discard feature attributes; round geographic coordinates to three decimal places; emit compact JSON. No airports, routes or freight observations are inferred from coastline geometry. Output `assets/coastlines-110m.json`, **85,769 bytes**, SHA-256 `71e4ecd3dc5f2ee60b401440992fa3f49eef16ce98c3bb47b1a87c4dd1109e1b`. Optional builder `scripts/build_coastline.py` downloads the pinned original, verifies its hash and verifies the exact output hash. The application reads the committed compact file without downloads.
 
-Suggested attribution, displayed beside the map: **Coastline: Natural Earth 1:110m (public domain). Airport references: OurAirports.** Generalized coastlines are for orientation, not navigation or detailed airport location validation. The map uses no political boundary dataset, remote basemap service, remote font or paid dependency.
+Map attribution: **Coastline and land: Natural Earth 1:110m (public domain). Airport references: OurAirports.** Generalized coastlines are for orientation, not navigation or detailed airport location validation. The map uses no political boundary dataset, remote basemap service, remote font or paid dependency.
 
-## Existing data rights
+## Airport references and observations
 
-The airport reference file, its dedication and matching method are unchanged. The official BTS package and its hashes are unchanged. Existing qualifications about the All Carriers dataset, DOT policy evidence, separate NTAD domestic product and public/commercial release remain in [data-provenance.md](data-provenance.md).
+OurAirports supplies airport references; BTS supplies segment observations. Their source-specific conditions are documented in [data provenance](data-provenance.md), and package and reference checksums are recorded in the [manifest](../data/processed/manifest.json).
 
 ## Natural Earth land fill
 

@@ -1,6 +1,6 @@
 # Processed data: official BTS 2024–2025
 
-The package preserves the official exports at the declared grain. The [current redistribution assessment](data-provenance.md) separates DOT policy evidence from BTS release rules and the records present. Public redistribution conditions remain unresolved; no worldwide public-domain or CC0 designation is asserted.
+The package preserves the 2024–2025 BTS T-100 Segment (All Carriers) exports at the declared grain. See [data provenance](data-provenance.md) for attribution and source-specific conditions.
 
 ## Files and scope
 
@@ -17,7 +17,7 @@ The segment table retains all reporting months, directions, carrier/entity IDs, 
 
 The grouping keys happen to be unique for all 1,121,004 records in this source vintage, so this version performs a lossless column projection and type/compression optimization at the retained grain rather than reducing row count. No records are sampled or excluded, including records with zero freight or zero departures. This is a full-scope processed derivative, not a small sample. It is not the original ZIP/CSV or a mirror download.
 
-Omitted fields: `AIR_TIME, CARRIER, CARRIER_GROUP, CARRIER_GROUP_NEW, CARRIER_NAME, DEST_AIRPORT_SEQ_ID, DEST_CITY_MARKET_ID, DEST_CITY_NAME, DEST_COUNTRY_NAME, DEST_STATE_ABR, DEST_STATE_FIPS, DEST_STATE_NM, DEST_WAC, DISTANCE_GROUP, ORIGIN_AIRPORT_SEQ_ID, ORIGIN_CITY_MARKET_ID, ORIGIN_CITY_NAME, ORIGIN_COUNTRY_NAME, ORIGIN_STATE_ABR, ORIGIN_STATE_FIPS, ORIGIN_STATE_NM, ORIGIN_WAC, QUARTER, RAMP_TO_RAMP`. They are unused descriptive geography/version fields, alternate carrier labels/groups, redundant quarter/distance bands and time measures. They are not required for current freight, frequency, carrier-share/HHI, directional/monthly/yearly, service-class or aircraft-type analyses. Quarter is recoverable from month. Tail-level events, original-row traceability and flight-time analysis are not claimed; unchanged original exports remain local for rebuilding and independent source audit.
+Omitted fields: `AIR_TIME, CARRIER, CARRIER_GROUP, CARRIER_GROUP_NEW, CARRIER_NAME, DEST_AIRPORT_SEQ_ID, DEST_CITY_MARKET_ID, DEST_CITY_NAME, DEST_COUNTRY_NAME, DEST_STATE_ABR, DEST_STATE_FIPS, DEST_STATE_NM, DEST_WAC, DISTANCE_GROUP, ORIGIN_AIRPORT_SEQ_ID, ORIGIN_CITY_MARKET_ID, ORIGIN_CITY_NAME, ORIGIN_COUNTRY_NAME, ORIGIN_STATE_ABR, ORIGIN_STATE_FIPS, ORIGIN_STATE_NM, ORIGIN_WAC, QUARTER, RAMP_TO_RAMP`. They are unused descriptive geography/version fields, alternate carrier labels/groups, redundant quarter/distance bands and time measures. They are not required for current freight, frequency, carrier-share/HHI, directional/monthly/yearly, service-class or aircraft-type analyses. Quarter is recoverable from month. Tail-level events, original-row traceability and flight-time analysis are not claimed; source-level rebuilding and independent reconciliation require the original exports.
 
 The airport table has one row per BTS code/country key and retains explicit IATA match status, reference names/regions/countries and coordinates only for the 2,020 safe matches. The 287 unmatched and 33 conflicting keys remain present with null coordinates. No ICAO/local-code fallback or geographic inference is added. Coordinates are candidates validated by unique IATA/country agreement, not a historical BTS-ID crosswalk. These references support the current geographic explorer.
 
@@ -49,6 +49,6 @@ python -m pytest -q
 python -m streamlit run app.py --browser.gatherUsageStats false
 ```
 
-The builder needs the official originals and OurAirports files, not the historical mirror or cached reconciliation outputs. End users of this bundle need only requirements.txt and the committed bundle. The app automatically discovers the manifest, checks file hashes and source-row accounting, computes findings, shows existing filters/evidence/case and supports exports. Optional uploads replace the bundle for that session; no upload is requested when the bundle exists. No synthetic fallback is present.
+The builder needs the official originals and OurAirports files, not the historical mirror or cached reconciliation outputs. End users of this bundle need only requirements.txt and the committed bundle. The app automatically discovers the manifest and verifies file checksums before computing findings and displaying research views and exports. Bundled-data tests verify row counts and source-record accounting. Optional uploads replace the bundle for that session; no upload is requested when the bundle exists. No synthetic fallback is present.
 
 `tests/test_packaged.py` contains mandatory no-raw-data checks and fails rather than skips if the bundle is missing. Existing rebuild/integration tests in test_official/test_real_data may skip when original files are absent. All bundled-app tests must pass in a fresh clone.

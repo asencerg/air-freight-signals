@@ -1,10 +1,10 @@
 # Air Freight Signals research findings
 
-Official-source revalidation: all five findings below were recalculated from the official 2024/2025 BTS ZIP exports. Their figures are unchanged; the original mirror attribution below records their history. Current authority is the official export audit in [official-data-reconciliation.md](official-data-reconciliation.md).
+All five findings below reconcile numerically to the 2024–2025 BTS ZIP exports. [Official reconciliation](official-data-reconciliation.md) records the source identities and acquisition limitations; numerical agreement does not independently authenticate the original download channel.
 
 ## HKG → ANC: Freight contraction
 
-**Source:** BTS T-100 Segment (All Carriers), AirportData mirror at 52aa3d888dabe6a38e799064dc28627bc0d68f92; local download 2026-11-01; not independently reconciled to BTS website
+**Source:** US DOT BTS T-100 Segment (All Carriers), 2024–2025 exports; see [official reconciliation](official-data-reconciliation.md). Historical comparison: AirportData mirror at `52aa3d888dabe6a38e799064dc28627bc0d68f92`, acquired 2026-11-01.
 
 **Period:** 2024 versus 2025; calendar months 1,2,3,4,5,6,7,8,9,10,11,12
 
@@ -18,7 +18,7 @@ Official-source revalidation: all five findings below were recalculated from the
 
 ## PVG → ANC: Freight growth
 
-**Source:** BTS T-100 Segment (All Carriers), AirportData mirror at 52aa3d888dabe6a38e799064dc28627bc0d68f92; local download 2026-11-01; not independently reconciled to BTS website
+**Source:** US DOT BTS T-100 Segment (All Carriers), 2024–2025 exports; see [official reconciliation](official-data-reconciliation.md). Historical comparison: AirportData mirror at `52aa3d888dabe6a38e799064dc28627bc0d68f92`, acquired 2026-11-01.
 
 **Period:** 2024 versus 2025; calendar months 1,2,3,4,5,6,7,8,9,10,11,12
 
@@ -32,7 +32,7 @@ Official-source revalidation: all five findings below were recalculated from the
 
 ## SZX → ANC: Diversification
 
-**Source:** BTS T-100 Segment (All Carriers), AirportData mirror at 52aa3d888dabe6a38e799064dc28627bc0d68f92; local download 2026-11-01; not independently reconciled to BTS website
+**Source:** US DOT BTS T-100 Segment (All Carriers), 2024–2025 exports; see [official reconciliation](official-data-reconciliation.md). Historical comparison: AirportData mirror at `52aa3d888dabe6a38e799064dc28627bc0d68f92`, acquired 2026-11-01.
 
 **Period:** 2024 versus 2025; calendar months 1,2,3,4,5,6,7,8,9,10,11,12
 
@@ -46,7 +46,7 @@ Official-source revalidation: all five findings below were recalculated from the
 
 ## MIA → BOG: Freight–frequency divergence
 
-**Source:** BTS T-100 Segment (All Carriers), AirportData mirror at 52aa3d888dabe6a38e799064dc28627bc0d68f92; local download 2026-11-01; not independently reconciled to BTS website
+**Source:** US DOT BTS T-100 Segment (All Carriers), 2024–2025 exports; see [official reconciliation](official-data-reconciliation.md). Historical comparison: AirportData mirror at `52aa3d888dabe6a38e799064dc28627bc0d68f92`, acquired 2026-11-01.
 
 **Period:** 2024 versus 2025; calendar months 1,2,3,4,5,6,7,8,9,10,11,12
 
@@ -60,7 +60,7 @@ Official-source revalidation: all five findings below were recalculated from the
 
 ## ANC → MEM: Freight contraction
 
-**Source:** BTS T-100 Segment (All Carriers), AirportData mirror at 52aa3d888dabe6a38e799064dc28627bc0d68f92; local download 2026-11-01; not independently reconciled to BTS website
+**Source:** US DOT BTS T-100 Segment (All Carriers), 2024–2025 exports; see [official reconciliation](official-data-reconciliation.md). Historical comparison: AirportData mirror at `52aa3d888dabe6a38e799064dc28627bc0d68f92`, acquired 2026-11-01.
 
 **Period:** 2024 versus 2025; calendar months 1,2,3,4,5,6,7,8,9,10,11,12
 

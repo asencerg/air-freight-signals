@@ -185,7 +185,13 @@ python -m streamlit run app.py --browser.gatherUsageStats false
 
 Place the five original source files under `data/official/`. Reconciliation additionally requires the historical mirror files under `data/`; primary ingestion and official case generation do not. In the app, upload the official ZIPs directly; historical Parquet/CSV support remains for comparison, but mixing official ZIPs with mirror uploads in one analysis is rejected.
 
-The archives are identified as BTS exports by their acquisition record and schema; their download channel is not independently authenticated. Direct-source possession resolves dependence on third-party Parquet packaging for current calculations, but does not itself establish redistribution rights. The [source-rights assessment](data-provenance.md) addresses DOT Order 1351.34, BTS Restricted Data guidance and §298.70. Current regulatory applicability, completeness/release status and the field dictionary remain unverified. OurAirports' previously verified official repository dedication remains applicable to the matching snapshot; mirror licensing is still relevant to historical files only. See data-provenance.md for the policy limitations.
+The archives are identified as BTS exports by their acquisition record and schema; their download channel and the current BTS field dictionary are not independently authenticated. Calculations use these exports rather than the historical mirror. [Data provenance](data-provenance.md) records source-specific conditions; numerical reconciliation does not establish redistribution permission.
+
+## Verification scope
+
+Source-dependent tests cover complete annual ZIPs, all three reference files, original-column preservation, literal Namibia country-code handling, ambiguity/conflict rejection, mixed-vintage rejection, malformed ZIPs and case traceability. They require the original archives and references; skips do not validate those inputs. Bundled-data tests run independently of the archives.
+
+The source reconciliation accounts for 1,121,004 official rows. Coordinate coverage is **86.32% of unique BTS codes**, **98.36% of source origin rows**, and **98.43% of source destination rows**. These row percentages are not freight-weighted coverage measures. The 2024 revision is +0.0320% freight and +0.0983% departures relative to the historical mirror. Original filenames and checksums are recorded in the source audit; raw archives, extracts and generated databases are excluded from version control.
 '''
     (ROOT/'docs/official-data-reconciliation.md').write_text(report)
     print(overview.to_string(index=False));print(json.dumps(audit['reconciliation'],indent=2));print(json.dumps(coverage,indent=2));print(five.to_string(index=False))

@@ -4,7 +4,7 @@
 <p align="center"><code>Python 3.12</code> · <code>DuckDB</code> · <code>Parquet</code> · <code>Streamlit</code> · <code>Plotly</code></p>
 <p align="center"><a href="#overview">Overview</a> · <a href="#workspaces">Workspaces</a> · <a href="#research">Research</a> · <a href="#scope-and-methodology">Methodology</a> · <a href="#quick-start">Quick start</a> · <a href="#attribution">Attribution</a> · <a href="#about">About</a></p>
 
-<a href="docs/screenshots/cargo-corridor-explorer.png"><img src="docs/screenshots/cargo-corridor-explorer.png" width="1440" alt="Air Freight Signals Cargo Corridor Explorer showing directional freight routes, regional camera controls and locally bundled land and coastlines"></a>
+<a href="docs/screenshots/cargo-corridor-explorer.png"><img src="docs/screenshots/cargo-corridor-explorer.png" width="1440" alt="Air Freight Signals Cargo Corridor Explorer emphasizing Hong Kong to Anchorage in the North Pacific view, with directional handles and locally bundled land and coastlines"></a>
 
 ## Overview
 
@@ -21,7 +21,7 @@ The application starts with **1,121,004 genuine 2024–2025 source observations*
 </tr>
 </table>
 
-*Authentic captures of the working application, 3 November 2026. Historical observations, not live monitoring. Default full-year filters; the explorer displays its top 25 routes. [Capture details](docs/screenshots.md).*
+*Authentic application captures: explorer, 6 November 2026; supporting views, 3 November 2026. Historical observations, not live monitoring. Full-year filters; the explorer highlights Hong Kong → Anchorage among its top 25 routes. [Capture details](docs/screenshots.md).*
 
 ## Workspaces
 
@@ -112,17 +112,17 @@ python -m pytest -q
 python scripts/audit_geography.py
 ```
 
-Tests cover package hashes, all five findings, matched periods, HHI, geography, navigation and exports. Original-source integration tests skip when the separately acquired archives are absent; mandatory bundled-data tests do not. [Package hashes and optional rebuild](docs/processed-data.md) · [Source reconciliation](docs/official-data-reconciliation.md).
+Tests cover package hashes, all five findings, matched periods, HHI, geography, navigation and exports. Original-source integration tests skip when the separately acquired archives are absent; mandatory bundled-data tests do not. [Package hashes and optional rebuild](docs/processed-data.md) · [Source reconciliation](docs/official-data-reconciliation.md) · [Optional browser regression checks](docs/browser-testing.md).
 
 ## Attribution
 
-The **US Department of Transportation, Bureau of Transportation Statistics** supplies the T-100 observations; **OurAirports** supplies airport references; **Natural Earth** supplies the coastline context. Source acknowledgment does not imply endorsement.
+The **US Department of Transportation, Bureau of Transportation Statistics** supplies the T-100 observations; **OurAirports** supplies airport references; **Natural Earth** supplies land and coastline context. Source acknowledgment does not imply endorsement.
 
 [Data provenance and source conditions](docs/data-provenance.md) · [Geographic sources](docs/geographic-sources.md)
 
 ## License
 
-No license has been selected for the original code, reports or screenshots. Data and third-party assets have separate terms; the BTS-derived bundle has no asserted unconditional redistribution license. See [source-specific conditions](docs/data-provenance.md).
+No license has been selected for the original code, reports or screenshots. BTS observations, OurAirports references, Natural Earth geography and dependencies have separate [source-specific conditions](docs/data-provenance.md).
 
 ## About
 

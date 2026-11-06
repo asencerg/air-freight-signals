@@ -69,7 +69,7 @@ def render_explorer(records,airports,engine,months,names,carrier_labels):
         nav=st.columns([3,2,1,1],vertical_alignment='bottom')
         selected=nav[0].selectbox('Selected directional corridor',options,key='map_selected',on_change=highlight_selection,help='Search by airport code. Direction matters: A → B is separate from B → A. List contains the displayed top-N routes.')
         st.session_state['map_focus']=st.session_state.get('map_focus',st.session_state.get('map_applied_focus','World'))
-        focus=nav[1].selectbox('Geographic focus',list(FOCUS),key='map_focus',help='Moves the camera only; does not filter corridors or change coverage.')
+        focus=nav[1].selectbox('Geographic focus',list(FOCUS),key='map_focus',format_func=lambda name: 'North Pacific' if name=='East Asia / North Pacific' else name,help='Moves the camera only; does not filter corridors or change coverage. North Pacific covers East Asia and the northern Pacific Ocean.')
         if st.session_state.get('map_applied_focus')!=focus:
             st.session_state['map_view']={'x':list(FOCUS[focus][0]),'y':list(FOCUS[focus][1])}
             st.session_state['map_epoch']=st.session_state.get('map_epoch',0)+1

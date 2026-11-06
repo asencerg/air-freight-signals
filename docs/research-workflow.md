@@ -16,6 +16,6 @@ No weighted composite score is used. Tables expose period sizes, absolute change
 
 Carrier filters select corridors and never remove other carriers from HHI denominators. New/absent activity means positive reported freight in one selected year-window and none in the other; it does not establish market entry/exit. Carrier net-change contributions can exceed 100% or be negative when carriers offset each other. Freight per departure is not capacity utilization. No customers, demand shortfalls or revenue estimates are inferred.
 
-Airport names use only unambiguous, country-checked reference matches; otherwise codes remain visible. The original package, analysis formulae, research figures and fixed Shenzhen–Anchorage report are unchanged. The case opens only on explicit navigation and is independent of current filters.
+Airport names use only unambiguous, country-checked reference matches; otherwise codes remain visible. The fixed Shenzhen–Anchorage case uses the documented full-year source population. It opens on explicit navigation and is independent of interactive filters.
 
 Fifteen corridor rows are shown per page. Detail and case charts are computed/rendered only when selected. Exports are explicitly prepared on request and cover all filtered eligible corridors before editorial screens and pagination. Original rule-level signals remain available as a separate export; they are not duplicate cards in the research feed. CSV downloads use UTF-8 with BOM for spreadsheet compatibility; Markdown and report/chart reads explicitly use UTF-8.
